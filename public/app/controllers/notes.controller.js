@@ -15,5 +15,6 @@ function NotesController ($scope, NoteService) {
         $scope.notes = data;
     });
 
+
 }
 

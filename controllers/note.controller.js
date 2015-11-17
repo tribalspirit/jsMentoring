@@ -9,6 +9,8 @@ let NoteModel = require('../models/note.model');
 module.exports = {
 
     create: (req, res) => {
+        console.log(req.body);
+        console.log(req.params);
         let note = new NoteModel({
             title: req.body.title,
             content: req.body.content,

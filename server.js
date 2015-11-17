@@ -9,6 +9,7 @@ let express = require('express'),
     http = require('http').createServer(app),
     index = require('./routes/index'),
     api = require('./routes/api'),
+    bodyParser = require('body-parser'),
     port = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + '/public'));
@@ -16,17 +17,9 @@ app.use(express.static(__dirname + '/public'));
 app.use('/', index);
 app.use('/api', api);
 
-//
-//app.get('/api/articles/:id',(req, res) => {
-//});
-//
-//app.put('/api/articles/:id', (req, res) => {
-//});
-//
-//app.delete('/api/articles/:id', (req, res) => {
-//});
-//
-//app.get('/api/search/:query', (req, res) => {
-//});
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
 
 http.listen(port, () => {console.log('listening on *', port);});

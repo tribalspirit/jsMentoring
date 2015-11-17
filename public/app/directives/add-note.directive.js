@@ -8,14 +8,28 @@ var module = angular.module('notebook');
 
 module.directive('addNote', addNoteDirective);
 
+addNoteDirective.$inject = ['NoteService'];
 
-function addNoteDirective() {
+function addNoteDirective(NoteService) {
     function linker(scope){
         scope.title = "";
         scope.content = "";
         scope.submitEnabled = function(){
             return $scope.title.length > 0 && $scope.content.length > 10;
         }
+        scope.create = function(){
+            let params = {
+                title: scope.title,
+                content: scope.content
+            };
+            NoteService.create(params).then(function(data){
+                if (data.status === "OK") {
+                    scope.title = "";
+                    scope.content = "";
+                }
+            })
+        }
+
     }
 
     return {
