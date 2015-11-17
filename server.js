@@ -1,36 +1,40 @@
+/**
+ * Created by Nick on 17.11.2015.
+ */
+
 'use strict';
-/**
- * Module dependencies.
- */
-var init = require('./config/init')(),
-	config = require('./config/config'),
-	mongoose = require('mongoose'),
-	chalk = require('chalk');
 
-/**
- * Main application entry file.
- * Please note that the order of loading is important.
- */
+let express = require('express');
+let app = express();
+let http = require('http').createServer(app);
 
-// Bootstrap db connection
-var db = mongoose.connect(config.db, function(err) {
-	if (err) {
-		console.error(chalk.red('Could not connect to MongoDB!'));
-		console.log(chalk.red(err));
-	}
+let note = require('./controllers/note.controller')
+
+let port = process.env.PORT || 3000;
+
+app.use(express.static(__dirname + '/public'));
+
+app.get('/', (req, res) => {
+    res.send("Server running at" + port);
+
 });
 
-// Init the express application
-var app = require('./config/express')(db);
+app.get('/api/articles', (req, res) => {
+});
 
-// Bootstrap passport config
-require('./config/passport')();
+app.post('/api/articles', (req, res) => {
+});
 
-// Start the app by listening on <port>
-app.listen(config.port);
+app.get('/api/articles/:id',(req, res) => {
+});
 
-// Expose app
-exports = module.exports = app;
+app.put('/api/articles/:id', (req, res) => {
+});
 
-// Logging initialization
-console.log('MEAN.JS application started on port ' + config.port);
+app.delete('/api/articles/:id', (req, res) => {
+});
+
+app.get('/api/search/:query', (req, res) => {
+});
+
+http.listen(port, () => {console.log('listening on *', port);});
