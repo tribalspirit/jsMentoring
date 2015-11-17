@@ -8,12 +8,21 @@ var module = angular.module('notebook');
 
 module.service('NoteService', NoteService);
 
-NoteService.$inject = ['$q'];
+NoteService.$inject = ['$q', '$http'];
 
-function NoteService($q){
+function NoteService($q, $http){
     return {
         create: function(){},
         read: function(){
+            let deferred = $q.defer();
+            $http.get('/api/articles')
+                .success(function(data){
+                    deferred.resolve(data);
+                })
+                .error(function(){
+                    deferred.reject();
+                });
+            return deferred.promise;
 
         }
     }

@@ -10,5 +10,6 @@ let express = require('express'),
     note = require('../controllers/note.controller');
 
 router.get('/articles', note.read);
+router.post('/articles', note.create);
 
 module.exports = router;
