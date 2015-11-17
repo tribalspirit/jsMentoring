@@ -6,7 +6,7 @@
 
 let NoteModel = require('../models/note.model');
 
-module.exports.NoteController = {
+module.exports = {
 
     create: (req, res) => {
         let note = new NoteModel({
@@ -22,18 +22,33 @@ module.exports.NoteController = {
             }
         });
     },
-    update: (req, res) => {},
-    delete: (req, res) => {},
-    read: (req, res) => {
-        return NoteModel.find((error, articles) => {
-            if (!err) {
-                return res.send(articles);
-            } else {
-                res.statusCode = 500;
-                return res.send({ error: 'Server error' });
-            }
-        });
+    read: function(req, res){
+        console.log('dddd');
+        let js = [
+            {title: 'sfdsdf',
+                content: 'Lorem ipsum sdfsdfsdfsdf'},
+
+            {title: 'title2',
+                content: 'Lorem ipsum sdfsdfsdfsdf'},
+
+            {title: 'title3',
+                content: 'Lorem ipsum sdfsdfsdfsdf'},
+
+            {title: 'title4',
+                content: 'Lorem ipsum sdfsdfsdfsdf'}
+                ];
+        res.json(js);
+
+        //return NoteModel.find((error, articles) => {
+        //    if (!err) {
+        //        return res.send(articles);
+        //    } else {
+        //        res.statusCode = 500;
+        //        return res.send({ error: 'Server error' });
+        //    }
+        //});
     },
+
     readById: (req, res) => {}
 
 }

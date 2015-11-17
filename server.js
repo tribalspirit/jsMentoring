@@ -4,37 +4,29 @@
 
 'use strict';
 
-let express = require('express');
-let app = express();
-let http = require('http').createServer(app);
-
-let note = require('./controllers/note.controller')
-
-let port = process.env.PORT || 3000;
+let express = require('express'),
+    app = express(),
+    http = require('http').createServer(app),
+    index = require('./routes/index'),
+    api = require('./routes/api'),
+    port = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', (req, res) => {
-    res.send("Server running at" + port);
+app.use('/', index);
+app.use('/api', api);
 
-});
-
-app.get('/api/articles', (req, res) => {
-});
-
-app.post('/api/articles', (req, res) => {
-});
-
-app.get('/api/articles/:id',(req, res) => {
-});
-
-app.put('/api/articles/:id', (req, res) => {
-});
-
-app.delete('/api/articles/:id', (req, res) => {
-});
-
-app.get('/api/search/:query', (req, res) => {
-});
+//
+//app.get('/api/articles/:id',(req, res) => {
+//});
+//
+//app.put('/api/articles/:id', (req, res) => {
+//});
+//
+//app.delete('/api/articles/:id', (req, res) => {
+//});
+//
+//app.get('/api/search/:query', (req, res) => {
+//});
 
 http.listen(port, () => {console.log('listening on *', port);});
