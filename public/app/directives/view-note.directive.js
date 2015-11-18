@@ -12,15 +12,21 @@ viewNoteDirective.$inject = ['NoteService'];
 
 function viewNoteDirective(NoteService) {
     function linker(scope){
-        scope.title = "";
-        scope.content = "";
+
+        scope.editMode = false;
+
+        scope.toggleMode = function(){
+            scope.editMode = !scope.editMode;
+        }
 
         scope.update = function(){
-            NoteService.create(params).then(function(data){
+            let params = {
+                title: scope.item.title,
+                content: scope.item.content
+            };
+            NoteService.update(scope.item._id, params).then(function(data){
                 if (data.status === "OK") {
-                    scope.title = "";
-                    scope.content = "";
-                    scope.refresh();
+                    scope.toggleMode();
                 }
             })
         }
@@ -33,7 +39,7 @@ function viewNoteDirective(NoteService) {
         scope: {
             item: '='
         },
-        templateUrl: '../app/directives/add-note.html',
+        templateUrl: '../app/directives/view-note.html',
         link: linker
     }
 

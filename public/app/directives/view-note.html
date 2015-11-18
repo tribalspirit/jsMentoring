@@ -1,18 +1,21 @@
 <div class="col-lg-4 well">
-
-
-
-    <form class="form-horizontal" role="form" ng-submit="update()">
+    <div class="row" ng-if="!editMode">
+        <h3 ng-bind="item.title"></h3>
+        <p ng-bind="item.content"></p>
+        <button class="btn btn-info" ng-click="toggleMode()">Update</button>
+        <button class="btn btn-danger" ng-click="deleteNote(item._id)">Delete</button>
+    </div>
+    <form class="form-horizontal" role="form" ng-submit="update()" ng-if="editMode">
         <fieldset>
             <div class="form-group">
                 <div class="controls col-sm-10">
-                    <input type="text" ng-model="title">
+                    <input type="text" ng-model="item.title">
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="controls col-sm-10">
-                    <textarea ng-model="content" id="content"></textarea>
+                    <textarea ng-model="item.content" id="content"></textarea>
                 </div>
             </div>
 

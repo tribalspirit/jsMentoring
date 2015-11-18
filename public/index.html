@@ -15,6 +15,7 @@
     <script src="app/app.js"></script>
     <script src="app/controllers/notes.controller.js"></script>
     <script src="app/directives/add-note.directive.js"></script>
+    <script src="app/directives/view-note.directive.js"></script>
     <script src="app/services/note.service.js"></script>
 
 </head>
@@ -22,14 +23,9 @@
 
     <div class="container col-lg-12" ng-controller="NotesController" ng-init="readNotes()">
         <add-note refresh="readNotes()"></add-note>
-
         <hr>
-
         <div ng-repeat="item in notes" class="well">
-            <h3 ng-bind="item.title"></h3>
-            <p ng-bind="item.content"></p>
-        <button class="btn btn-info" ng-click="">Update</button>
-        <button class="btn btn-danger" ng-click="deleteNote(item._id)">Delete</button>
+            <view-note item="item"></view-note>
         </div>
     </div>
 
