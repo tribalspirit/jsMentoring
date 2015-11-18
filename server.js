@@ -9,12 +9,16 @@ let express = require('express'),
     index = require('./routes/index'),
     api = require('./routes/api'),
     bodyParser = require('body-parser'),
+    methodOverride = require('method-override'),
     port = process.env.PORT || 3000;
+
+app.use(methodOverride());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+
 
 
 app.use(express.static(__dirname + '/public'));

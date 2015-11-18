@@ -8,6 +8,7 @@
 		"morgan": "*",
 		"mongoose": "*",
 	  	"body-parser": "*",
+	  	"method-override": "*",
 		"lodash": "*",
 		"bower": "*",
 	  	"kerberos": "*"

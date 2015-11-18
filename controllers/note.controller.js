@@ -24,19 +24,46 @@ module.exports = {
     },
     read: (req, res) => {
         return NoteModel.find(
-             (err, articles) => {
+             (err, notes) => {
                 if (!err) {
-                    return res.send(articles);
+                    return res.send(notes);
                 } else {
                     return res.send({ error: 'Server error' });
                 }
             });
     },
     update: (req, res) => {
+    return NoteModel.findById(req.params.id, (err, note) => {
+        if(!note) {
+            return res.send({ error: 'Not found' });
+        }
 
+        note.title = req.body.title;
+        note.content = req.body.content;
+        note.modified = Date.now();
+
+        return note.save((err) => {
+            if (!err) {
+                return res.send({ status: 'OK', note: note });
+            } else {
+                return res.send({error: err.message});
+            }
+        });
+    });
     },
     delete: (req, res) => {
-
+    return NoteModel.findById(req.params.id, (err, note) => {
+            if(!note) {
+                return res.send({ error: 'Not found' });
+            }
+            return note.remove(function (err) {
+                if (!err) {
+                    return res.send({ status: 'OK' });
+                } else {
+                    return res.send({ error: 'Server error' });
+                }
+        });
+    });
     }
 
 }

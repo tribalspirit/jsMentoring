@@ -34,7 +34,28 @@ function NoteService($q, $http){
                     deferred.reject();
                 });
             return deferred.promise;
-
+        },
+        delete: function(id){
+            let deferred = $q.defer();
+            $http.delete('/api/articles/'+id)
+                .success(function(data){
+                    deferred.resolve(data);
+                })
+                .error(function(){
+                    deferred.reject();
+                });
+            return deferred.promise;
+        },
+        update: function(id, params){
+            let deferred = $q.defer();
+            $http.put('/api/articles/'+id, params)
+                .success(function(data){
+                    deferred.resolve(data);
+                })
+                .error(function(){
+                    deferred.reject();
+                });
+            return deferred.promise;
         }
     }
 }

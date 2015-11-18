@@ -16,5 +16,8 @@ function NotesController ($scope, NoteService) {
         NoteService.read().then((data) => $scope.notes = data);
     };
 
+    $scope.deleteNote = function(id){
+        NoteService.delete(id).then(() => $scope.readNotes());
+    };
 }
 
