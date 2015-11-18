@@ -14,7 +14,7 @@ function NoteService($q, $http){
     return {
         create: function(params){
             let deferred = $q.defer();
-            
+
             $http.post('/api/articles', params)
                 .success(function(data){
                     deferred.resolve(data);

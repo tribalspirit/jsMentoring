@@ -1,27 +1,21 @@
 /**
- * Created by Nick on 17.11.2015.
+ * Created by Nick on 18.11.2015.
  */
 
 'use strict';
 
 var module = angular.module('notebook');
 
-module.directive('addNote', addNoteDirective);
+module.directive('viewNote', viewNoteDirective);
 
-addNoteDirective.$inject = ['NoteService'];
+viewNoteDirective.$inject = ['NoteService'];
 
-function addNoteDirective(NoteService) {
+function viewNoteDirective(NoteService) {
     function linker(scope){
         scope.title = "";
         scope.content = "";
-        scope.submitEnabled = function(){
-            return scope.title.length > 0 && scope.content.length > 10;
-        }
-        scope.create = function(){
-            let params = {
-                title: scope.title,
-                content: scope.content
-            };
+
+        scope.update = function(){
             NoteService.create(params).then(function(data){
                 if (data.status === "OK") {
                     scope.title = "";
@@ -37,7 +31,7 @@ function addNoteDirective(NoteService) {
         restrict: 'EA',
         transclude: true,
         scope: {
-            refresh: '&'
+            item: '='
         },
         templateUrl: '../app/directives/add-note.html',
         link: linker

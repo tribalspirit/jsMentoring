@@ -11,10 +11,10 @@ NotesController.$inject = ['$scope', 'NoteService'];
 
 function NotesController ($scope, NoteService) {
     $scope.notes = [];
-    NoteService.read().then(function(data){
-        $scope.notes = data;
-    });
 
+    $scope.readNotes = function(){
+        NoteService.read().then((data) => $scope.notes = data);
+    };
 
 }
 

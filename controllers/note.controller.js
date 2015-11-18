@@ -4,13 +4,11 @@
 
 'use strict';
 
-let NoteModel = require('../models/note.model');
+let NoteModel = require('../models/note.model').Note;
 
 module.exports = {
 
     create: (req, res) => {
-        console.log(req.body);
-        console.log(req.params);
         let note = new NoteModel({
             title: req.body.title,
             content: req.body.content,
@@ -24,33 +22,21 @@ module.exports = {
             }
         });
     },
-    read: function(req, res){
-        console.log('dddd');
-        let js = [
-            {title: 'sfdsdf',
-                content: 'Lorem ipsum sdfsdfsdfsdf'},
-
-            {title: 'title2',
-                content: 'Lorem ipsum sdfsdfsdfsdf'},
-
-            {title: 'title3',
-                content: 'Lorem ipsum sdfsdfsdfsdf'},
-
-            {title: 'title4',
-                content: 'Lorem ipsum sdfsdfsdfsdf'}
-                ];
-        res.json(js);
-
-        //return NoteModel.find((error, articles) => {
-        //    if (!err) {
-        //        return res.send(articles);
-        //    } else {
-        //        res.statusCode = 500;
-        //        return res.send({ error: 'Server error' });
-        //    }
-        //});
+    read: (req, res) => {
+        return NoteModel.find(
+             (err, articles) => {
+                if (!err) {
+                    return res.send(articles);
+                } else {
+                    return res.send({ error: 'Server error' });
+                }
+            });
     },
+    update: (req, res) => {
 
-    readById: (req, res) => {}
+    },
+    delete: (req, res) => {
+
+    }
 
 }

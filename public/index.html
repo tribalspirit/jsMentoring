@@ -20,15 +20,16 @@
 </head>
 <body ng-app="notebook">
 
-    <div class="container col-lg-12" ng-controller="NotesController">
-        <add-note></add-note>
+    <div class="container col-lg-12" ng-controller="NotesController" ng-init="readNotes()">
+        <add-note refresh="readNotes()"></add-note>
 
         <hr>
 
         <div ng-repeat="item in notes" class="well">
             <h3 ng-bind="item.title"></h3>
             <p ng-bind="item.content"></p>
-
+        <button class="btn btn-info" ng-click="">Update</button>
+        <button class="btn btn-danger" ng-click="">Delete</button>
         </div>
     </div>
 

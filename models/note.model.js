@@ -21,7 +21,7 @@ let Schema = mongoose.Schema;
 
 let Note = new Schema({
     title: {type: String, required: true},
-    text: {type: String, required: true},
+    content: {type: String, required: true},
     created: {type: Date, default: Date.now},
     modified: {type: Date, default: Date.now}
 });
