@@ -25,7 +25,7 @@
         <add-note refresh="readNotes()"></add-note>
         <hr>
         <div ng-repeat="item in notes" class="well">
-            <view-note item="item"></view-note>
+            <view-note item="item" refresh="readNotes()"></view-note>
         </div>
     </div>
 

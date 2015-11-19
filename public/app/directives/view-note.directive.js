@@ -31,13 +31,20 @@ function viewNoteDirective(NoteService) {
             })
         }
 
+        scope.deleteNote = function(){
+            NoteService.delete(scope.item._id).then(function(data) {
+                scope.refresh();
+            })
+        }
+
     }
 
     return {
         restrict: 'EA',
         transclude: true,
         scope: {
-            item: '='
+            item: '=',
+            refresh: '&'
         },
         templateUrl: '../app/directives/view-note.html',
         link: linker
