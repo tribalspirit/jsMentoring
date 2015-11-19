@@ -21,7 +21,7 @@
 </head>
 <body ng-app="notebook">
 
-    <div class="container col-lg-12" ng-controller="NotesController" ng-init="readNotes()">
+    <div class="main container col-lg-4" ng-controller="NotesController" ng-init="readNotes()">
         <add-note refresh="readNotes()"></add-note>
         <hr>
         <div ng-repeat="item in notes" class="well">
