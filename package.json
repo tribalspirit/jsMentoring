@@ -12,9 +12,21 @@
 		"lodash": "*",
 		"bower": "*",
 	  	"kerberos": "*",
-	  	"mocha": "*"
+	  	"babel": "*",
+	  	"babel-register": "*"
 	},
+	"devDependencies": {
+	  	"grunt": "*",
+	  	"grunt-contrib-watch": "*",
+	  	"grunt-contrib-jshint": "*",
+	  	"mocha": "*",
+	  	"mocha-traceur": "*",
+	  	"should": "*",
+	  	"chai": "*",
+	  	"karma": "*"
+		},
 	"scripts": {
-	  "postinstall": "./node_modules/bower/bin/bower install"
+	  "postinstall": "./node_modules/bower/bin/bower install",
+	  "test": "mocha --compilers js:mocha-traceur ./tests/*.js"
 	}
 }

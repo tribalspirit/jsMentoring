@@ -2,9 +2,9 @@
  * Created by Nick on 17.11.2015.
  */
 
-'use strict';
+require("babel-register");
 
-let express = require('express'),
+var express = require('express'),
     app = express(),
     index = require('./routes/index'),
     api = require('./routes/api'),
@@ -26,4 +26,4 @@ app.use(express.static(__dirname + '/public'));
 app.use('/', index);
 app.use('/api', api);
 
-app.listen(port, () => {console.log('listening on *', port);});
+app.listen(port, function(){console.log('listening on *', port);});
