@@ -20,13 +20,15 @@
 	  	"grunt-contrib-watch": "*",
 	  	"grunt-contrib-jshint": "*",
 	  	"mocha": "*",
+			"traceur": "*",
 	  	"mocha-traceur": "*",
 	  	"should": "*",
 	  	"chai": "*",
-	  	"karma": "*"
+			"chai-http": "*",
+	  	"karma": "*",
+			"karma-mocha": "*"
 		},
 	"scripts": {
-	  "postinstall": "./node_modules/bower/bin/bower install",
 	  "test": "mocha --compilers js:mocha-traceur ./tests/*.js"
 	}
 }

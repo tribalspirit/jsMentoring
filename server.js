@@ -27,3 +27,5 @@ app.use('/', index);
 app.use('/api', api);
 
 app.listen(port, function(){console.log('listening on *', port);});
+
+module.exports = app;
